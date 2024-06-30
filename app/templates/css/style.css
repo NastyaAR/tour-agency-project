@@ -1,0 +1,240 @@
+/* Сброс стилей */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Общие стили */
+
+body {
+  /*background-color: #f5f5f5;*/
+  border-left: 400px solid #000;
+  border-right: 400px solid #000;
+  border-image: url(../static/sea.jpg) 1000 repeat;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5em;
+}
+
+/* Шапка */
+
+header {
+  background-color: #337;
+  color: #fff;
+}
+
+.banner {
+  padding: 40px 0;
+  text-align: center;
+  background-image: url(../static/footer.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
+.banner h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.banner p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.banner .button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Навигация */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #fff;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: #ccc;
+}
+
+/* Основной контент */
+
+main {
+  padding: 60px 0;
+}
+
+/* Направления */
+
+.destinations {
+  margin-bottom: 60px;
+}
+
+.destinations h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.destinations-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.destination {
+  width: 30%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.destination img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.destination h3 {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.destination p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.destination .button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Отзывы */
+
+.testimonials {
+  margin-bottom: 60px;
+}
+
+.testimonials h2 {
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.testimonials-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.testimonial {
+  width: 45%;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.testimonial p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.testimonial .author {
+  display: flex;
+  align-items: center;
+}
+
+.testimonial .author img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.testimonial .author p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Призыв к действию */
+
+.cta {
+  text-align: center;
+  background-color: #337;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.cta h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.cta p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.cta .button {
+  background-color: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Подвал */
+
+footer {
+  background-color: #337;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  font-size: 16px;
+} 

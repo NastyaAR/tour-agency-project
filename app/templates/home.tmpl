@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Туристическое агентство</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  {{template "header.tmpl"}}
+  <main>
+    <section class="destinations">
+      <h2>Популярные направления</h2>
+      <div class="destinations-list">
+        <div class="destination">
+          <img src="./static/paris.jpg" alt="Destination 1" />
+          <h3>Париж</h3>
+          <p>Город любви и культуры.</p>
+          <a href="#" class="button">Подробнее</a>
+        </div>
+        <div class="destination">
+          <img src="./static/rome.jpg" alt="Destination 2" />
+          <h3>Рим</h3>
+          <p>Исторический и романтичный город.</p>
+          <a href="#" class="button">Подробнее</a>
+        </div>
+        <div class="destination">
+          <img src="./static/tokio.jpeg" alt="Destination 3" />
+          <h3>Токио</h3>
+          <p>Современный и динамичный город.</p>
+          <a href="#" class="button">Подробнее</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2>Отзывы наших клиентов</h2>
+      <div class="testimonials-list">
+        <div class="testimonial">
+          <p>
+            "Мы очень довольны тем, как наше туристическое агентство организовало нашу поездку в Париж. Все было прекрасно организовано, и мы прекрасно провели время."
+          </p>
+          <div class="author">
+            <img src="./static/man.jpg" alt="Client 1" />
+            <p>Джон Смит</p>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p>
+            "Мы путешествуем с этим туристическим агентством уже несколько лет, и они всегда превосходят наши ожидания. Их сотрудники очень профессиональны и дружелюбны, и они всегда готовы порекомендовать нам лучшие туры."
+          </p>
+          <div class="author">
+            <img src="./static/women.jpg" alt="Client 2" />
+            <p>Мария Джонс</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{ template "footer.tmpl" }}
+</body>
+
+</html>
