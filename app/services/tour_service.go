@@ -175,3 +175,16 @@ func (ts *tourService) GetHotTours(offset int, limit int, lg *logrus.Logger) ([]
 
 	return tours, nil
 }
+
+func (ts *tourService) GetNumberOfTours(lg *logrus.Logger) (int, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), ts.timeout)
+	defer cancel()
+
+	number, err := ts.tourRepository.GetNumberOfTours(ctx, lg)
+	if err != nil {
+		lg.Errorf("bad getnumberoftours")
+		return domain.DefaultEmptyValue, xerrors.Errorf("tour service: getnumberoftours error: %v", err.Error())
+	}
+
+	return number, nil
+}

@@ -3,6 +3,7 @@ package repo
 import (
 	"app/domain"
 	"context"
+	"database/sql"
 	"fmt"
 	"github.com/jackc/pgx/v5"
 	"github.com/sirupsen/logrus"
@@ -277,4 +278,30 @@ func (p *postgresTourRepo) GetHotTours(c context.Context, offset int, limit int,
 	}
 
 	return tours, nil
+}
+
+func (p *postgresTourRepo) GetNumberOfTours(c context.Context, lg *logrus.Logger) (int, error) {
+	query := `select count(*) from tours`
+	lg.Info("tour repo get number of tours")
+
+	row, err := p.db.Query(c, query)
+	if err != nil {
+		lg.Errorf("bad get number of tours")
+		return domain.DefaultEmptyValue, xerrors.Errorf("tour repo: getnumberof tours error: %v", err.Error())
+	}
+
+	var number sql.NullInt32
+	err = row.Scan(&number)
+	if err != nil {
+		lg.Errorf("bad scan result from getnumberoftours")
+		return domain.DefaultEmptyValue, xerrors.Errorf("tour repo: getnumberof tours error: %v", err.Error())
+	}
+
+	if !number.Valid {
+		lg.Errorf("not valid number (null)")
+		return domain.DefaultEmptyValue, xerrors.Errorf("tour repo: getnumbertours tours error: not valid number")
+	}
+
+	intNumber := int(number.Int32)
+	return intNumber, nil
 }

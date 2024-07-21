@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Список туров</title>
+  <link rel="stylesheet" href="./css/view_tours_style.css" />
+</head>
+<body>
+<!--   {{template "header.tmpl"}} -->
+  <main>
+  <h1>Список туров</h1>
+<!--  <table>
+    <thead>
+      <tr>
+        <th>Место отдыха</th>
+        <th>Место отправления</th>
+        <th>Дата отправления</th>
+        <th>Продолжительность</th>
+        <th>Стоимость (от)</th>
+        <th>Количество туристов</th>
+        <th>Тип отдыха</th>
+      </tr>
+    </thead>
+    <tbody>-->
+<!--       {{ range .Tours }} -->
+<!--       <tr> -->
+<!--         <td>{{ .Destination }}</td> -->
+<!--         <td>{{ .Departure }}</td> -->
+<!--         <td>{{ .DepartureDate }}</td> -->
+<!--        <td>{{ .Duration }}</td>
+        <td>{{ .Cost }}</td>
+        <td>{{ .Capacity }}</td>
+        <td>{{ .Type }}</td>
+      </tr>
+      {{ end }}
+    </tbody>
+  </table>-->
+      <div class="pagination p2">
+          <ul>
+              <a href="#"><li>1</li></a>
+              <a class="is-active" href="#"><li>2</li></a>
+              <a href="#"><li>3</li></a>
+              <a href="#"><li>4</li></a>
+              <a href="#"><li>5</li></a>
+              <a href="#"><li>6</li></a>
+          </ul>
+      </div>
+  </main>
+<!--   {{template "footer.tmpl"}} -->
+</body>
+</html>  

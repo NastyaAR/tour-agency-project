@@ -10,3 +10,15 @@ func Home(c *gin.Context) {
 		"title": "Main website",
 	})
 }
+
+func About(c *gin.Context) {
+	c.HTML(http.StatusOK, "about.tmpl", gin.H{
+		"title": "About page",
+	})
+}
+
+func Tours(c *gin.Context) {
+	c.HTML(http.StatusOK, "find.tmpl", gin.H{
+		"title": "find tour page",
+	})
+}

@@ -1,9 +1,17 @@
 package main
 
 import (
+	"app/controller"
+	"app/repo"
 	"app/route"
+	"app/services"
+	"context"
+	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5"
 	"github.com/sirupsen/logrus"
 	"os"
+	"time"
 )
 
 func initLogger(logFile string) *logrus.Logger {
@@ -28,13 +36,13 @@ func initLogger(logFile string) *logrus.Logger {
 }
 
 func main() {
-	//ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	//defer cancel()
-	//pool, err := pgx.Connect(ctx, "user=creator password=password host=127.0.0.1 port=5432 dbname=tour-db")
-	//defer pool.Close(context.Background())
-	//if err != nil {
-	//	fmt.Printf("conncet error: %v", err.Error())
-	//}
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+	pool, err := pgx.Connect(ctx, "user=creator password=password host=127.0.0.1 port=5432 dbname=tour-db")
+	defer pool.Close(context.Background())
+	if err != nil {
+		fmt.Printf("conncet error: %v", err.Error())
+	}
 	//
 	//rdb := redis.NewClient(&redis.Options{
 	//	Addr:     "127.0.0.1:6379",
@@ -45,9 +53,9 @@ func main() {
 	//rr := repo.NewRedisAuthRepo(rdb, time.Second*60)
 	//authS := services.CreateNewAuthService(rr, time.Second)
 	//
-	//tr := repo.NewPostgresTourRepo(pool)
+	tr := repo.NewPostgresTourRepo(pool)
 	//sr := repo.NewPostgresSaleRepo(pool)
-	//ts := services.NewTourService(tr, time.Second)
+	ts := services.NewTourService(tr, time.Second)
 	//ss := services.NewSaleService(sr, time.Second)
 	//
 	//ar := repo.NewPostgresAccountRepo(pool)
@@ -89,5 +97,15 @@ func main() {
 	//	}
 	//}
 
-	route.MainRouter()
+	lg := initLogger("log.txt")
+	tc := controller.TourController{ts, lg}
+
+	router := gin.Default()
+	router.Static("/css", "./templates/css")
+	router.Static("/static", "./templates/static")
+	router.LoadHTMLGlob("./templates/*.tmpl")
+	route.MainRouter(router)
+	route.TourRouter(router, &tc)
+
+	router.Run()
 }

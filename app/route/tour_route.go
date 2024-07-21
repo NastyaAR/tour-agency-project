@@ -5,12 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func MainRouter(router *gin.Engine) {
-	//router := gin.Default()
+func TourRouter(router *gin.Engine, tourCntl *controller.TourController) {
 	//router.Static("/css", "./templates/css")
 	//router.Static("/static", "./templates/static")
 	//router.LoadHTMLGlob("./templates/*.tmpl")
-	router.GET("/", controller.Home)
-	router.GET("/about", controller.About)
-	router.GET("/find", controller.Tours)
+	router.GET("/tours", tourCntl.ViewTours)
 }

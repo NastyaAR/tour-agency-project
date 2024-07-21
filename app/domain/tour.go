@@ -51,6 +51,7 @@ type ITourRepo interface {
 	UpdateSale(c context.Context, id int, newSale *Sale, lg *logrus.Logger) error
 	GetLimit(c context.Context, offset int, limit int, lg *logrus.Logger) ([]Tour, error)
 	GetHotTours(c context.Context, offset int, limit int, lg *logrus.Logger) ([]HotTourDto, error)
+	GetNumberOfTours(c context.Context, lg *logrus.Logger) (int, error)
 }
 
 type ITourService interface {
@@ -62,4 +63,5 @@ type ITourService interface {
 	GetByCriteria(criteria *Tour, offset int, limit int, lg *logrus.Logger) ([]Tour, error)
 	GetTours(offset int, limit int, lg *logrus.Logger) ([]Tour, error)
 	GetHotTours(offset int, limit int, lg *logrus.Logger) ([]HotTourDto, error)
+	GetNumberOfTours(lg *logrus.Logger) (int, error)
 }
