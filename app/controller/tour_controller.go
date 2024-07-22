@@ -2,30 +2,29 @@ package controller
 
 import (
 	"app/domain"
-	"fmt"
+	"app/pkg"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	"html/template"
 	"net/http"
 )
 
 type TourController struct {
 	TourService domain.ITourService
+	Pager       pkg.Pager
 	Lg          *logrus.Logger
 }
 
 func (tc *TourController) ViewTours(c *gin.Context) {
-	tours, _ := tc.TourService.GetTours(0, 10, tc.Lg)
-
-	tmpl, err := template.ParseFiles("./templates/view_tours.tmpl")
+	pageNumber, err := tc.Pager.GetPage(c, tc.Lg)
 	if err != nil {
-		fmt.Println("error while parse", err.Error())
+		tc.Lg.Errorf("tour controller: viewTours error: %v", err.Error())
 	}
-
-	tmpl.Execute(c.Writer, tours)
+	tours, _ := tc.TourService.GetTours(pageNumber, pkg.ItemsOnPage, tc.Lg)
 
 	c.HTML(http.StatusOK, "view_tours.tmpl", gin.H{
-		"title": "View tours",
-		"Tours": tours,
+		"title":        "View tours",
+		"Tours":        tours,
+		"current_page": pageNumber,
+		"total_pages":  tc.Pager.GetTotalPages(),
 	})
 }

@@ -63,5 +63,5 @@ type ITourService interface {
 	GetByCriteria(criteria *Tour, offset int, limit int, lg *logrus.Logger) ([]Tour, error)
 	GetTours(offset int, limit int, lg *logrus.Logger) ([]Tour, error)
 	GetHotTours(offset int, limit int, lg *logrus.Logger) ([]HotTourDto, error)
-	GetNumberOfTours(lg *logrus.Logger) (int, error)
+	GetNumber(lg *logrus.Logger) (int, error)
 }

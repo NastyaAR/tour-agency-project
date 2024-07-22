@@ -2,6 +2,7 @@ package main
 
 import (
 	"app/controller"
+	"app/pkg"
 	"app/repo"
 	"app/route"
 	"app/services"
@@ -98,7 +99,9 @@ func main() {
 	//}
 
 	lg := initLogger("log.txt")
-	tc := controller.TourController{ts, lg}
+	pager, _ := pkg.CreateGinPager(ts, lg)
+
+	tc := controller.TourController{ts, pager, lg}
 
 	router := gin.Default()
 	router.Static("/css", "./templates/css")

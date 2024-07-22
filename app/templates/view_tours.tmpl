@@ -38,17 +38,40 @@
         {{ end }}
       </tbody>
     </table>
+    <div class="pagination p2">
+      <ul id="pagination-list">
+        <!-- Здесь будут динамически добавлены ссылки на пагинацию -->
+      </ul>
+    </div>
 
-      <div class="pagination p2">
-          <ul>
-              <a href="#"><li>1</li></a>
-              <a class="is-active" href="#"><li>2</li></a>
-              <a href="#"><li>3</li></a>
-              <a href="#"><li>4</li></a>
-              <a href="#"><li>5</li></a>
-              <a href="#"><li>6</li></a>
-          </ul>
-      </div>
+    <script>
+      const currentPage = {{ .current_page }};
+      pages = {{ .total_pages }};
+      if ({{ .total_pages }} > 5) {
+        pages = Math.ceil({{ .total_pages }} / 5);
+      }
+      const paginationList = document.getElementById('pagination-list');
+
+      for (let i = 1; i <= pages; i++) {
+        const linkElement = document.createElement('li');
+        const anchorElement = document.createElement('a');
+        anchorElement.href = 'tours?page=' + i.toString();
+        linkElement.textContent = i;
+        if (i === currentPage) {
+          anchorElement.classList.add('is-active');
+        }
+        anchorElement.appendChild(linkElement);
+        paginationList.appendChild(anchorElement);
+        console.log(anchorElement);
+      }
+
+      const lastElement = document.createElement('li');
+      const lastAnchor = document.createElement('a');
+      lastElement.textContent = 'далее';
+      lastAnchor.href = 'tours/next';
+      lastAnchor.appendChild(lastElement);
+      paginationList.appendChild(lastAnchor);
+    </script>
   </main>
   {{template "footer.tmpl"}}
 </body>

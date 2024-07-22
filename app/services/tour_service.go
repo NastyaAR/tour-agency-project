@@ -176,7 +176,7 @@ func (ts *tourService) GetHotTours(offset int, limit int, lg *logrus.Logger) ([]
 	return tours, nil
 }
 
-func (ts *tourService) GetNumberOfTours(lg *logrus.Logger) (int, error) {
+func (ts *tourService) GetNumber(lg *logrus.Logger) (int, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), ts.timeout)
 	defer cancel()
 
