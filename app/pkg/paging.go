@@ -89,3 +89,7 @@ func (gp *GinPager) GetCurPage() int {
 func (gp *GinPager) GetTotalPages() int {
 	return gp.totalPages
 }
+
+func (gp *GinPager) SetTotalPages(tp int) {
+	gp.totalPages = tp
+}

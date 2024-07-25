@@ -29,3 +29,95 @@
 table {
     overflow-x: auto;
 }
+
+.tours {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.tour-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 48%; /* Задаем ширину карточки в 48% */
+    background-color: #fff;
+    transition: box-shadow 0.3s ease;
+}
+
+.tour-card:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.tour-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.tour-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tour-info li {
+    margin-bottom: 5px;
+}
+
+.tour-price {
+    text-align: right;
+}
+
+.tour-price p {
+    margin-bottom: 5px;
+}
+
+.tour-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.tour-button:hover {
+    background-color: #0056b3;
+}
+
+.tour-type {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.tour-date {
+    font-style: italic;
+}
+
+.tour-destination {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .tour-card {
+        width: calc(50% - 20px);
+        margin: 10px;
+    }
+}

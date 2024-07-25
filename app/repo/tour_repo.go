@@ -285,10 +285,6 @@ func (p *postgresTourRepo) GetNumberOfTours(c context.Context, lg *logrus.Logger
 	lg.Info("tour repo get number of tours")
 
 	row := p.db.QueryRow(c, query)
-	//if err != nil {
-	//	lg.Errorf("bad get number of tours")
-	//	return domain.DefaultEmptyValue, xerrors.Errorf("tour repo: getnumberof tours error: %v", err.Error())
-	//}
 
 	var number sql.NullInt32
 	err := row.Scan(&number)

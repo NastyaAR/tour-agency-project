@@ -19,7 +19,7 @@ func (tc *TourController) ViewTours(c *gin.Context) {
 	if err != nil {
 		tc.Lg.Errorf("tour controller: viewTours error: %v", err.Error())
 	}
-	tours, _ := tc.TourService.GetTours(pageNumber, pkg.ItemsOnPage, tc.Lg)
+	tours, _ := tc.TourService.GetTours((pageNumber-1)*pkg.ItemsOnPage, pkg.ItemsOnPage, tc.Lg)
 
 	c.HTML(http.StatusOK, "view_tours.tmpl", gin.H{
 		"title":        "View tours",
@@ -27,4 +27,8 @@ func (tc *TourController) ViewTours(c *gin.Context) {
 		"current_page": pageNumber,
 		"total_pages":  tc.Pager.GetTotalPages(),
 	})
+}
+
+func (tc *TourController) FindTours(c *gin.Context) {
+
 }

@@ -106,6 +106,7 @@ func main() {
 	router := gin.Default()
 	router.Static("/css", "./templates/css")
 	router.Static("/static", "./templates/static")
+	router.Static("/js", "./templates/js")
 	router.LoadHTMLGlob("./templates/*.tmpl")
 	route.MainRouter(router)
 	route.TourRouter(router, &tc)
