@@ -36,6 +36,8 @@ func (p *postgresTourRepo) GetByCriteria(c context.Context, offset int, limit in
 
 	query += ` limit $1 offset $2`
 
+	lg.Warnf(query)
+
 	rows, err := p.db.Query(c, query, values...)
 	defer rows.Close()
 

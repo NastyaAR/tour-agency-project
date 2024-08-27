@@ -1,0 +1,80 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            dockerfile: Dockerfile
+            context: ./app
+        image: app
+        container_name: my-app
+        restart: unless-stopped
+        ports:
+            - "50150:8080"
+        depends_on:
+            - postgres
+            - redis
+        networks:
+            - dev
+
+    postgres:
+        container_name: my-postgres
+        image: postgres:12.19-bullseye
+        environment:
+            POSTGRES_DB: "tour-db"
+            POSTGRES_USER: "creator"
+            POSTGRES_PASSWORD: "password"
+        volumes:
+            - ./init-postgres:/docker-entrypoint-initdb.d
+            - ./test-data-postgres:/var/lib/postgresql/data
+            - ./postgres-config/postgres.conf:/usr/local/etc/postgres/postgres.conf
+        ports:
+        - "5432:5432"
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U creator -d tour-db"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
+            start_period: 10s
+        restart: unless-stopped
+        networks:
+            - dev
+        
+    #pgadmin:
+        #container_name: my-pgadmin
+        #image: dpage/pgadmin4:7.2
+        #environment:
+            #PGADMIN_DEFAULT_EMAIL: "alkina.2016@mail.ru"
+            #PGADMIN_DEFAULT_PASSWORD: "passwordpgadmin"
+            #PGADMIN_CONFIG_SERVER_MODE: "False"
+        #volumes:
+            #- ./mypgadmin-data:/var/lib/pgadmin
+        #ports:
+            #- "5050:8081"
+        #restart: unless-stopped
+        #networks:
+            #- dev
+    redis:
+        container_name: my-redis
+        image: redis:6.2-alpine
+        restart: unless-stopped
+        ports:
+        - "6379:6379"
+        command: redis-server --save 20 1 --loglevel warning --requirepass pahst13_82
+        volumes:
+            - ./redis-data:/data
+        networks:
+            - dev
+        
+        
+        
+volumes:
+  data-postgres:
+  mypgadmin-data:
+  postgres-config:
+  redis-data:
+  
+networks:
+    dev: 
+        driver: bridge
+  
+        

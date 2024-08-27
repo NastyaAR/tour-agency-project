@@ -43,7 +43,7 @@ func FromStringToTourJson(str string, lg *logrus.Logger) (TourJson, error) {
 
 func (t *TourJson) ToDomainTour(lg *logrus.Logger) (domain.Tour, error) {
 	var tour domain.Tour
-	layout := "2006-01-02 15:04"
+	layout := "2006-01-02T15:04"
 	timeLocal, err := time.Parse(layout, t.Date)
 	if err != nil {
 		lg.Warnf("bad tourjson to domain tour")

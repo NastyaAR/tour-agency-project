@@ -35,7 +35,7 @@
       const currentPage = {{ .current_page }};
       pages = {{ .total_pages }};
       if ({{ .total_pages }} > 5) {
-        pages = Math.ceil({{ .total_pages }} / 5);
+        pages = 5
       }
       const paginationList = document.getElementById('pagination-list');
 

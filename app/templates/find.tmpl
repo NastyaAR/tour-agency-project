@@ -5,41 +5,49 @@
   <meta charset="UTF-8" />
   <title>Туристическое агентство</title>
   <link rel="stylesheet" href="./css/style.css" />
+  <script src="./js/find_tours.js"></script>
 </head>
 
 <body>
   {{template "header.tmpl"}}
     <main>
-  <form action="find/tours" method="GET">
-    <label for="destination">Место отдыха:</label>
-    <input type="text" id="destination">
+  <form id="find_tour">
+    <label for="chillPlace">Место отдыха:</label>
+    <input type="text" id="chillPlace">
 
-    <label for="departure">Место отправления:</label>
-    <input type="text" id="departure">
+    <label for="fromPlace">Место отправления:</label>
+    <input type="text" id="fromPlace">
 
-    <label for="departure_date">Дата отправления:</label>
-    <input type="date" id="departure_date">
+    <label for="date">Дата отправления:</label>
+    <input type="datetime-local" id="date">
 
     <label for="duration">Продолжительность:</label>
     <input type="number" id="duration">
 
-    <label for="cost_from">Стоимость (от):</label>
-    <input type="number" id="cost_from">
+    <label for="cost">Стоимость (от):</label>
+    <input type="number" id="cost">
 
-    <label for="num_tourists">Количество туристов:</label>
-    <input type="number" id="num_tourists">
+    <label for="touristsNumber">Количество туристов:</label>
+    <input type="number" id="touristsNumber">
 
-    <label for="vacation_type">Тип отдыха:</label>
-    <select id="vacation_type">
-      <option value="elite">Элитный</option>
-      <option value="city">Городской</option>
-      <option value="beach">Пляжный</option>
-      <option value="active">Активный</option>
-      <option value="unusual">Необычный</option>
+    <label for="chillType">Тип отдыха:</label>
+    <select id="chillType">
+      <option value="элитный">Элитный</option>
+      <option value="городской">Городской</option>
+      <option value="пляжный">Пляжный</option>
+      <option value="активный">Активный</option>
+      <option value="необычный">Необычный</option>
     </select>
 
     <input type="submit" value="Найти туры">
   </form>
+
+  <script>
+   document.getElementById('find_tour').addEventListener('submit', function(event) {
+         event.preventDefault();
+         tour_submitter(event);
+   });
+  </script>
 </main>
   {{ template "footer.tmpl" }}
 </body>

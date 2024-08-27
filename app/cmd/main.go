@@ -7,7 +7,6 @@ import (
 	"app/route"
 	"app/services"
 	"context"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
 	"github.com/sirupsen/logrus"
@@ -39,10 +38,10 @@ func initLogger(logFile string) *logrus.Logger {
 func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	pool, err := pgx.Connect(ctx, "user=creator password=password host=127.0.0.1 port=5432 dbname=tour-db")
+	pool, err := pgx.Connect(ctx, "postgres://creator:password@127.0.0.1:5432/tour-db")
 	defer pool.Close(context.Background())
 	if err != nil {
-		fmt.Printf("conncet error: %v", err.Error())
+		panic(err)
 	}
 	//
 	//rdb := redis.NewClient(&redis.Options{

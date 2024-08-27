@@ -55,9 +55,9 @@ func (gp *GinPager) GetPage(c *gin.Context, lg *logrus.Logger) (int, error) {
 
 func (gp *GinPager) GetNumberOfPages(lg *logrus.Logger) (int, error) {
 	totalNumber, err := gp.outputObj.GetNumber(lg)
-
+	lg.Info(totalNumber)
 	totalPages := int(math.Ceil(float64(totalNumber) / ItemsOnPage))
-
+	lg.Info(totalPages)
 	if err != nil {
 		lg.Errorf("pager: getNumberOfPages error: %v", err.Error())
 		return DefaultPageNumber, xerrors.Errorf("pager: getNumberOfPages error: %v", err.Error())
